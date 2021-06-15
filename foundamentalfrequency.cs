@@ -35,6 +35,7 @@ public class foundamentalfrequency : MonoBehaviour
 
     public void generatesonglist()
     {
+        //load saved song data from user file
         string[] x;
         int i = 1;
         DirectoryInfo dir = new DirectoryInfo(Application.persistentDataPath);
@@ -55,6 +56,7 @@ public class foundamentalfrequency : MonoBehaviour
         {
             return;
         }
+        //get and store the length of the current analysis frame
         var oldArray = loudnessduration;
         Array.Copy(oldArray, 1, loudnessduration, 0, oldArray.Length - 1);
         loudnessduration[loudnessduration.Length-1] = time-previoustime;
@@ -64,6 +66,7 @@ public class foundamentalfrequency : MonoBehaviour
         float loudest = 0f;
         float[,] peaks = new float[18, 2];
         spectrum[88] = 88f;
+        //use FFT to get the frequencies, and detect the loudest frequencies partials, or peaks.
         AudioListener.GetSpectrumData(spectrum, 0, FFTWindow.Hanning);
         Debug.Log(time + " spectrum[88]: " + spectrum[88]);
         for (i = 18; i<spectrum.Length; i++)
@@ -106,39 +109,31 @@ public class foundamentalfrequency : MonoBehaviour
             WriteString();
         }*/
 
-
+        //sort the peaks by their loudness
         float[,] refinedpeaks = peaks.OrderBy(p => p[1]);
         float max = 0f;
         int maxindex = 0;
         int firstnpartial = 8;
+        //the "loudness" of each frame is calculated by averaging the 8 loudest partials
         for (i = (peaks.GetLength(0)-firstnpartial); i < peaks.GetLength(0); i++)
         {
             //Debug.Log(time + " refined peaks #" + i + ": " + refinedpeaks[i, 0] + " loudness " + refinedpeaks[i, 1]);
             loudness += refinedpeaks[i, 1];
-        }
-        //alternatepda(refinedpeaks);
+        }     
         loudness /= firstnpartial;
+        
+        //checkloudness to detect a sudden "dip" in loudness, which occurs when transitioning from one note to another. This helps to eliminate any mistakes made by the pitch detection algorithm
         checkloudness();
-        //writeloudness();
         Debug.Log(time + " loudness: "+loudness);
         loudness = 0f;
-        //Debug.Log(time + " loudest: " + loudestindex + " maxindex: " + maxindex + " max ratio: " + max);
         max = 0f;
-        //C:\Users\harry\Downloads\
 
+
+        //implement this (https://www.ime.usp.br/~mqz/Mitre_AESBR2006.pdf) Pitch Detection Algorithm,
         float[] weightedaverage = new float[Mathf.RoundToInt(loudestindex / 27.5f) + 1];
         float weighing = 0f, weightedsum = 0f, peaksum = 0f, loudnessweighing = 0f;
         int maxharmonics = 1;
-        int count = 0;
-        //
-        //
-        //
-        //
-        //
-        //
-        //
-        //Another idea for fundamental frequency: do the below steps for the loudest and second loudest partials and compare the F0canidate they
-        //each produced
+        int count = 0;     
         for (i = 1; i <= Mathf.RoundToInt(loudestindex / 27.5f); i++)
         {
             F0canidate = loudestindex / i;
@@ -187,7 +182,7 @@ public class foundamentalfrequency : MonoBehaviour
             }
             if (count > 0)
             {
-                //Debug.Log(time + " Foudamental canidate: " + identifynote(F0canidate, false) + "number of harmonics: " + count + " max harmonics: " + c + " weighted average: " + weightedaverage[i]);
+                
             }
             weightedsum = 0f;
             count = 0;
@@ -204,7 +199,7 @@ public class foundamentalfrequency : MonoBehaviour
                 if (Mathf.Abs((refinedpeaks[k, 0] / harmonics) - 1) < 0.08f)
                 {
                     c = j;
-                    //Debug.Log(time + " while refining, the " + j + "th harmonics of " + identifynote(foundamental, false) + " is a peak!");
+                   
                     if (j <= 4)
                     {
                         weightedsum += refinedpeaks[k, 1] * refinedpeaks[k, 0] / j;
@@ -217,7 +212,7 @@ public class foundamentalfrequency : MonoBehaviour
                 }
             }
         }
-        //Debug.Log(time + " while refining, the Foudamental canidate: " + identifynote(foundamental, false) + " harmonics count: " + c + "weightedsum: " + weightedsum);
+ 
         for (j = 1; j <= c; j++)
         {
             harmonics = foundamental * j;
@@ -237,10 +232,10 @@ public class foundamentalfrequency : MonoBehaviour
             }
 
         }
-        //foundamental = weightedsum / weighing;
 
 
         Debug.Log(time + " base note before refine: " + identifynote((foundamental), false) + " " + foundamental);
+        //check if the current note is different than the previous note.
         currentnote = identifynote((foundamental), false).Split('_');
         if (currentnote[0] != previousnote[0])
         {
