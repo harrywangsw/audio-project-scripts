@@ -6,21 +6,22 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 public static class saveanalysis
 {
-    public static void SavePlayer(preprocessspectrum analysistobesaved, string songname)
+    public static void SavePlayer(data analysistobesaved, string songname)
     {
         BinaryFormatter formatter = new BinaryFormatter();
         string path = Application.persistentDataPath + "/" + songname + ".sa";
         FileStream stream = new FileStream(path, FileMode.Create);
 
-        data translationprogress = new data(analysistobesaved);
+        data translationprogress = analysistobesaved;
         formatter.Serialize(stream, translationprogress);
         stream.Close();
         Debug.Log("saved!");
+        Camera.main.GetComponent<foundamentalfrequency>().generatesonglist();
     }
 
     public static data LoadPlayer(string loadname)
     {
-        string path = Application.persistentDataPath + "/" + loadname + ".sa";
+        string path = Application.persistentDataPath + "/" + loadname +".sa";
         if (File.Exists(path))
         {
             BinaryFormatter formatter = new BinaryFormatter();
@@ -36,5 +37,17 @@ public static class saveanalysis
             Debug.Log("path not found");
             return null;
         }
+    }
+    public static void SaveMistake(spectrumanalysis analysistobesaved, string songname)
+    {
+        BinaryFormatter formatter = new BinaryFormatter();
+        string path = Application.persistentDataPath + "/" + songname + ".mistake";
+        FileStream stream = new FileStream(path, FileMode.Create);
+
+        mistakedata translationprogress = new mistakedata(analysistobesaved);
+        formatter.Serialize(stream, translationprogress);
+        stream.Close();
+        Debug.Log("saved!");
+
     }
 }

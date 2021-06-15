@@ -6,12 +6,14 @@ using System;
 [System.Serializable]
 public class data
 {
-    string[] notes;
-    float[,] duration = new float[888, 2];
+    public List<string> notes;
+    public float[,] duration = new float[888, 2];
+    public float[] correctdynamics;
 
-    public data(preprocessspectrum analysistobesaved) 
+    public data() 
     {
-        notes = analysistobesaved.note;
-        duration = analysistobesaved.duration;
+        notes = new List<string>();
+        duration = new float[888, 2];
+        correctdynamics = new float[888];
     }
 }
