@@ -1,0 +1,89 @@
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/!svn/ver/56/trunk/csaudio/WaveAudio/WaveAudio
+END
+WaveAudio.csproj
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/56/trunk/csaudio/WaveAudio/WaveAudio/WaveAudio.csproj
+END
+Effects.cs
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/44/trunk/csaudio/WaveAudio/WaveAudio/Effects.cs
+END
+SynthesisBaseClasses.cs
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/56/trunk/csaudio/WaveAudio/WaveAudio/SynthesisBaseClasses.cs
+END
+EffectsAudacity.cs
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/44/trunk/csaudio/WaveAudio/WaveAudio/EffectsAudacity.cs
+END
+Documentation.txt
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/23/trunk/csaudio/WaveAudio/WaveAudio/Documentation.txt
+END
+WaveAudio.cs
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/22/trunk/csaudio/WaveAudio/WaveAudio/WaveAudio.cs
+END
+SynthesisPadSynth.cs
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/56/trunk/csaudio/WaveAudio/WaveAudio/SynthesisPadSynth.cs
+END
+PitchDetection.cs
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/22/trunk/csaudio/WaveAudio/WaveAudio/PitchDetection.cs
+END
+WaveAudioOperations.cs
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/27/trunk/csaudio/WaveAudio/WaveAudio/WaveAudioOperations.cs
+END
+SynthesisConstructiveSynth.cs
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/56/trunk/csaudio/WaveAudio/WaveAudio/SynthesisConstructiveSynth.cs
+END
+ConstructionUtil.cs
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/56/trunk/csaudio/WaveAudio/WaveAudio/ConstructionUtil.cs
+END
+WaveAudioPersistence.cs
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/6/trunk/csaudio/WaveAudio/WaveAudio/WaveAudioPersistence.cs
+END
+Synthesis.cs
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/56/trunk/csaudio/WaveAudio/WaveAudio/Synthesis.cs
+END
+Fourier.cs
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/12/trunk/csaudio/WaveAudio/WaveAudio/Fourier.cs
+END
